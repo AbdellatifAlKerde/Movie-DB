@@ -112,6 +112,8 @@ app.get("/movies/read/:id", (req, res, next) => {
   }
 });
 
+// Add
+
 app.get("/movies/add", (req, res, next) => {
   if (
     req.query.title === "" ||
@@ -139,5 +141,20 @@ app.get("/movies/add", (req, res, next) => {
       rating: parseInt(req.query.rating),
     });
     res.json(movies);
+  }
+});
+
+// Delete/id
+
+app.get("/movies/delete/:id", (req, res, next) => {
+  if (req.params.id < movies.length - 1) {
+    movies.splice(req.params.id, 1);
+    res.json(movies);
+  } else {
+    res.json({
+      status: 404,
+      error: true,
+      message: "the movie <ID> does not exist",
+    });
   }
 });
