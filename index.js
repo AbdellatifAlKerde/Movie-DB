@@ -42,3 +42,36 @@ app.get("/search", (req, res, next) => {
     });
   }
 });
+
+// Movies Array
+
+const movies = [
+  { title: "Jaws", year: 1975, rating: 8 },
+  { title: "Avatar", year: 2009, rating: 7.8 },
+  { title: "Brazil", year: 1985, rating: 8 },
+  { title: "الإرهاب والكباب‎", year: 1992, rating: 6.2 },
+];
+
+// Create
+
+app.get("/movies/create", (req, res, next) => {
+  res.json("CREATE");
+});
+
+// Read
+
+app.get("/movies/read", (req, res, next) => {
+  res.json({ status: 200, data: movies });
+});
+
+// Update
+
+app.get("/movies/update", (req, res, next) => {
+  res.json("UPDATE");
+});
+
+// Delete
+
+app.get("/movies/delete", (req, res, next) => {
+  res.json("DELETE");
+});
