@@ -158,3 +158,24 @@ app.get("/movies/delete/:id", (req, res, next) => {
     });
   }
 });
+
+// Update/id
+
+app.get("/movies/update/:id", (req, res, next) => {
+  if (req.query.title == undefined) {
+    movies[req.params.id - 1].year = parseInt(req.query.year);
+    movies[req.params.id - 1].rating = parent(req.query.rating);
+    movies[req.params.id - 1].title = movies[req.params.id - 1].title;
+    res.json(movies);
+  } else if (req.query.year == undefined) {
+    movies[req.params.id - 1].title = req.query.title;
+    movies[req.params.id - 1].rating = parseInt(req.query.rating);
+    movies[req.params.id - 1].year = movies[req.params.id - 1].year;
+    res.json(movies);
+  } else if (req.query.rating == undefined) {
+    movies[req.params.id - 1].title = req.query.title;
+    movies[req.params.id - 1].year = parseInt(req.query.year);
+    movies[req.params.id - 1].rating = movies[req.params.id - 1].rating;
+    res.json(movies);
+  }
+});
