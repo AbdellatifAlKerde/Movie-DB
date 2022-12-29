@@ -54,9 +54,9 @@ const movies = [
 
 // Create
 
-app.get("/movies/create", (req, res, next) => {
-  res.json("CREATE");
-});
+// app.post("/movies/create", (req, res, next) => {
+//   res.json("CREATE");
+// });
 
 // Read
 
@@ -66,15 +66,15 @@ app.get("/movies/read", (req, res, next) => {
 
 // Update
 
-app.get("/movies/update", (req, res, next) => {
-  res.json("UPDATE");
-});
+// app.put("/movies/update", (req, res, next) => {
+//   res.json("UPDATE");
+// });
 
 // Delete
 
-app.get("/movies/delete", (req, res, next) => {
-  res.json("DELETE");
-});
+// app.delete("/movies/delete", (req, res, next) => {
+//   res.json("DELETE");
+// });
 
 // Read/by-date
 
@@ -114,7 +114,7 @@ app.get("/movies/read/:id", (req, res, next) => {
 
 // Add
 
-app.get("/movies/add", (req, res, next) => {
+app.post("/movies/add", (req, res, next) => {
   if (
     req.query.title === "" ||
     req.query.year.length > 4 ||
@@ -146,9 +146,9 @@ app.get("/movies/add", (req, res, next) => {
 
 // Delete/id
 
-app.get("/movies/delete/:id", (req, res, next) => {
+app.delete("/movies/delete/:id", (req, res, next) => {
   if (req.params.id < movies.length - 1) {
-    movies.splice(req.params.id, 1);
+    movies.splice(req.params.id - 1, 1);
     res.json(movies);
   } else {
     res.json({
@@ -161,7 +161,7 @@ app.get("/movies/delete/:id", (req, res, next) => {
 
 // Update/id
 
-app.get("/movies/update/:id", (req, res, next) => {
+app.put("/movies/update/:id", (req, res, next) => {
   if (req.query.title == undefined) {
     movies[req.params.id - 1].year = parseInt(req.query.year);
     movies[req.params.id - 1].rating = parent(req.query.rating);
@@ -176,6 +176,11 @@ app.get("/movies/update/:id", (req, res, next) => {
     movies[req.params.id - 1].title = req.query.title;
     movies[req.params.id - 1].year = parseInt(req.query.year);
     movies[req.params.id - 1].rating = movies[req.params.id - 1].rating;
+    res.json(movies);
+  } else {
+    movies[req.params.id - 1].title = req.query.title;
+    movies[req.params.id - 1].year = parseInt(req.query.year);
+    movies[req.params.id - 1].rating = parseInt(req.query.rating);
     res.json(movies);
   }
 });
