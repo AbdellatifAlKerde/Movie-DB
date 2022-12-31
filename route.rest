@@ -1,6 +1,6 @@
 
 
-GET http://localhost:3000/data
+POST http://localhost:3000/api/user
 
 ###
 
@@ -29,5 +29,21 @@ Content-Type: application/json
   "year": 2020,
   "rating": 8  
 }
+
+###
+
+POST http://localhost:3000/api/user/login
+Content-Type: application/json
+
+{
+  "username": "abdellatif",
+  "password": "1234567"
+}
+
+### 
+
+GET http://localhost:3000/api/post
+
+
 
 

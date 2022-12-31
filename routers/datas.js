@@ -4,33 +4,33 @@ const express = require("express");
 const router = express.Router();
 const Movies = require("../models/data");
 
-router.get("/", async (req, res) => {
-  try {
-    const movies = await Movies.find();
-    res.json(movies);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+// router.get("/", async (req, res) => {
+//   try {
+//     const movies = await Movies.find();
+//     res.json(movies);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 
-router.get("/:id", getMovies, (req, res) => {
-  res.json(res.movie);
-});
+// router.get("/:id", getMovies, (req, res) => {
+//   res.json(res.movie);
+// });
 
-router.post("/", async (req, res) => {
-  const movie = new Movies({
-    title: req.body.title,
-    year: req.body.year,
-    rating: req.body.rating,
-  });
-  // console.log(req.body);
-  try {
-    const newMovie = await movie.save();
-    res.status(201).json(newMovie);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+// router.post("/", async (req, res) => {
+//   const movie = new Movies({
+//     title: req.body.title,
+//     year: req.body.year,
+//     rating: req.body.rating,
+//   });
+//   // console.log(req.body);
+//   try {
+//     const newMovie = await movie.save();
+//     res.status(201).json(newMovie);
+//   } catch (err) {
+//     res.status(400).json({ message: err.message });
+//   }
+// });
 
 router.patch("/:id", getMovies, async (req, res) => {
   if (req.body.title != null) {
